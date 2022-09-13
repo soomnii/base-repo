@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    group:
+      "local" : "common, local"
+      "dev" : "common, dev"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: common
+server:
+  address: localhost
+  port: 7070
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
