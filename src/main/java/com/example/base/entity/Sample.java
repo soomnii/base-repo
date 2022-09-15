@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_SAMPLE")
+@Table(name = "TB_SAMPLE")
 public class Sample {
     @Id
     @Column(name = "s_id")
@@ -14,6 +14,4 @@ public class Sample {
 
     @Column(name = "s_name")
     String name;
-
-
 }
