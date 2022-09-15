@@ -1,3 +1,5 @@
+postgresql/
+
 .gradle
 build/
 bin/
