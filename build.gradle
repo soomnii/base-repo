@@ -44,6 +44,7 @@ spotless {
         importOrder 'java', 'javax', 'org', 'com', ''
         removeUnusedImports()
         googleJavaFormat('1.7').aosp()
+        indentWithSpaces(4)
         trimTrailingWhitespace()
         endWithNewline()
 
@@ -51,7 +52,7 @@ spotless {
     format 'misc', {
         target '*.yml', '*.properties', '*.gradle', '*.md', '.gitignore'
         trimTrailingWhitespace()
-        indentWithSpaces(4)
+        indentWithSpaces(2)
         endWithNewline()
     }
 }

@@ -29,8 +29,6 @@ server:
   address: localhost
   port: 7070
 
-
-
 ---
 
 spring:
