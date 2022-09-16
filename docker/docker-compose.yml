@@ -11,3 +11,20 @@ services:
       POSTGRES_PASSWORD: "rootpwd"
     volumes:
       - /Users/soominlee/dev/base/postgresql/data/:/var/lib/postgresql/data
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    restart: always
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    restart: always
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /Users/soominlee/dev/base/soominlee/kafka/log:/var/run/docker.sock
