@@ -1,22 +1,29 @@
-#
+### Soomni's SpringBoot Base Template
 
-### SpringBoot boilerplate  
+Soomni's Spring Boot Base Template Playground. :running:
 
-- TODO Spring boot Settings :leaves:  
-- [ ] spring-web
-- [ ] jpa
+
+:checkered_flag: TODO Spring boot Services :leaves:
+- [x] spring-boot-starter-web
+- [ ] openfeign
+- [ ] webflux
+- [ ] JPA
 - [ ] flyway
 - [ ] kafka
 
+:checkered_flag: TODO Fundamentals, Keywords :books:
+- [ ] DDD (Domain Driven Development)
+- [ ] JPA deep dive
+- [ ] QueryDsl
 
-- TODO docker-compose :whale:
-- [ ] postgresql
-- [ ] zookeeper
-- [ ] kafka
+:checkered_flag: TODO docker-compose :whale:
+- [x] postgresql
+- [x] zookeeper
+- [x] kafka
 - [ ] zookeeper, kafka cluster
 
-
-- TODO MSA :thought_balloon:
+:checkered_flag: TODO MSA :thought_balloon:
 - [ ] spring-cloud
 - [ ] eureka ( API gateway)
-- [ ] clustering services
+- [ ] clustering services   
+  
