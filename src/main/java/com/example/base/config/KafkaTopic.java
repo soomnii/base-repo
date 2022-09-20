@@ -13,8 +13,16 @@ public class KafkaTopic {
     @Value(value = "${kafka.topic.sample}")
     String sampleTopic;
 
+    @Value(value = "${kafka.topic.object-sample}")
+    String sampleObjectTopic;
+
     @Bean
     public NewTopic sampleTopic() {
         return new NewTopic(sampleTopic, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic sampleObjectTopic() {
+        return new NewTopic(sampleObjectTopic, 1, (short) 1);
     }
 }

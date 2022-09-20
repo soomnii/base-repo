@@ -68,6 +68,7 @@ public class KafkaConsumerConfig {
         consumerConfig.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         consumerConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        consumerConfig.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         return consumerConfig;
     }
 
