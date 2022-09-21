@@ -45,6 +45,9 @@ spring:
     activate:
       on-profile: dev
 
+logging:
+  level:
+    com.example.base: info
 ---
 
 spring:
@@ -52,6 +55,11 @@ spring:
     activate:
       on-profile: local
 
+logging:
+  level:
+    com.example.base: debug
+
 kafka:
   topic:
     sample: spring-boot-sample
+    object-sample: spring-boot-sample-object
