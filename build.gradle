@@ -20,6 +20,8 @@ ext {
 
 dependencies {
 
+    //starter-aop
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -30,8 +32,8 @@ dependencies {
     implementation group: 'org.postgresql', name :'postgresql'
 
     // kafka swagger
-    implementation 'io.github.springwolf:springwolf-kafka:0.7.0'
-    runtimeOnly 'io.github.springwolf:springwolf-ui:0.4.0'
+    implementation 'io.github.springwolf:springwolf-kafka:0.8.0'
+    runtimeOnly 'io.github.springwolf:springwolf-ui:0.5.0'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

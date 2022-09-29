@@ -11,7 +11,7 @@ spring:
     activate:
       on-profile: common
   datasource:
-    url: jdbc:postgresql://localhost:5432/base
+    url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: root
     password: rootpwd
