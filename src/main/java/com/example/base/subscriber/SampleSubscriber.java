@@ -1,6 +1,5 @@
 package com.example.base.subscriber;
 
-// import org.apache.kafka.common.header.Headers;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.MessageHeaders;

@@ -25,5 +25,6 @@ Soomni's Spring Boot Base Template Playground. :running:
 :checkered_flag: TODO MSA :thought_balloon:
 - [ ] spring-cloud
 - [ ] eureka ( API gateway)
-- [ ] clustering services   
-  
+- [ ] clustering services
+
+- custom jar library import 방법

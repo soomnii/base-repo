@@ -11,6 +11,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -19,6 +20,10 @@ ext {
 }
 
 dependencies {
+
+    implementation 'org.example:common:1.0-SNAPSHOT'
+
+    //starter-aop
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
