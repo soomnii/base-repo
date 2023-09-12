@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KafkaTopic {
-    @Value(value = "${spring.kafka.producer.bootstrap-servers}")
+    @Value(value = "${spring.kafka.bootstrap-servers}")
     String bootstrapServers;
 
     @Value(value = "${kafka.topic.sample}")

@@ -25,18 +25,25 @@ spring:
     generate-ddl: true
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
       client-id: base-sub-client
       group-id: base-group-1
       auto-offset-reset: latest
     producer:
-      bootstrap-servers: localhost:9092
       client-id: base-pub-client
+    bootstrap-servers: localhost:29092,localhost:39092,localhost:49092
+    listener:
+      ack-mode: manual
 
 
 server:
   address: localhost
   port: 7070
+
+logging:
+  level:
+    com:
+      example:
+        base: debug
 
 ---
 
@@ -54,4 +61,5 @@ spring:
 
 kafka:
   topic:
+    object-sample: spring-boot-object-sample
     sample: spring-boot-sample

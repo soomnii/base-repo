@@ -1,12 +1,8 @@
 package com.example.base.config;
 
 import com.example.base.model.topic.KafkaPubVO;
-import java.util.HashMap;
-import java.util.Map;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,13 +12,11 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.CommonErrorHandler;
-import org.springframework.kafka.listener.DefaultErrorHandler;
-import org.springframework.kafka.listener.KafkaListenerErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.util.backoff.BackOff;
-import org.springframework.util.backoff.FixedBackOff;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @EnableKafka
@@ -56,7 +50,6 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(getStringConsumerFactory(getStringConsumerFactoryConfig()));
-//        factory.setContainerProperr
         return factory;
     }
 
@@ -93,22 +86,21 @@ public class KafkaConsumerConfig {
         consumerConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         consumerConfig.put(
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//        consumerConfig.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, );
                 consumerConfig.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
                 return consumerConfig;
     }
 
-    @Bean
-    public KafkaListenerErrorHandler kafkaErrorHandler() {
-        return (message, exception ) -> {
-            log.error("[KafkaErrorHandler] kafkaMessage=[" + message.getPayload() + "], errorMessage=[" + exception.getMessage() + "]");
-
-            //ConsumerRecord<String, String> record = (ConsumerRecord<String, String>) m.getPayload();
-            // 메시지를 더 가공하거나 별도 처리를 하고..
-
-            return message.getPayload();  // sendTo("토픽명")에 입력된 토픽으로 전달 될 메시지 내용
-        };
-    }
+//    @Bean
+//    public KafkaListenerErrorHandler kafkaErrorHandler() {
+//        return (message, exception ) -> {
+//            log.error("[KafkaErrorHandler] kafkaMessage=[" + message.getPayload() + "], errorMessage=[" + exception.getMessage() + "]");
+//
+//            //ConsumerRecord<String, String> record = (ConsumerRecord<String, String>) m.getPayload();
+//            // 메시지를 더 가공하거나 별도 처리를 하고..
+//
+//            return message.getPayload();  // sendTo("토픽명")에 입력된 토픽으로 전달 될 메시지 내용
+//        };
+//    }
 
 //    @Bean
 //    public DefaultErrorHandler errorHandler() {
