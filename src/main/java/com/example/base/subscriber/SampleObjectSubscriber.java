@@ -28,6 +28,19 @@ public class SampleObjectSubscriber {
 
     private final Logger log = LoggerFactory.getLogger(SampleObjectSubscriber.class);
 
+
+    /*
+    일반 message listener
+     */
+//    @KafkaListener(
+//            topics = "${kafka.topic.object-sample}",
+//            containerFactory = "jsonListenerContainerFactory")
+//    public void SampleObjectListener(
+//            @Payload SampleKafkaVO message, @Headers MessageHeaders headers) throws Exception {
+//        log.debug("#### message ===> {}", message.getName());
+//    }
+
+
 //    @KafkaListener(
 //            topics = "${kafka.topic.object-sample}",
 //            containerFactory = "jsonListenerContainerFactory")
@@ -54,16 +67,21 @@ public class SampleObjectSubscriber {
 //        throw new KafkaException("exception222");
 //    }
 
-    @KafkaListener(
-            topics = "${kafka.topic.object-sample}",
-            groupId = "tttttt",
-            containerFactory = "jsonListenerContainerFactory")
-    @Retryable(value=KafkaException.class, maxAttempts = 5, backoff = @Backoff(delay=2000))
-    public void SampleObjectListenerWithBlockingRetry(
-            @Payload SampleKafkaVO message, @Headers MessageHeaders headers) throws Exception {
-        log.debug("message2222 ===> {}", message.getName());
-        throw new KafkaException("exception222");
-    }
+
+    /*
+    * Retryable 어노테이션 활용 에러 핸들링
+    *
+    * */
+//    @KafkaListener(
+//            topics = "${kafka.topic.object-sample}",
+//            groupId = "tttttt",
+//            containerFactory = "jsonListenerContainerFactory")
+//    @Retryable(value=KafkaException.class, maxAttempts = 5, backoff = @Backoff(delay=2000))
+//    public void SampleObjectListenerWithBlockingRetry(
+//            @Payload SampleKafkaVO message, @Headers MessageHeaders headers) throws Exception {
+//        log.debug("message2222 ===> {}", message.getName());
+//        throw new KafkaException("exception222");
+//    }
 
     /*
      * Non-Blocking Retry
@@ -85,11 +103,11 @@ public class SampleObjectSubscriber {
 //        throw new KafkaException("exception333");
 //    }
 
-    @KafkaListener(
-            topics = "retry-topic",
-            containerFactory = "jsonListenerContainerFactory")
-    public void SampleObjectListener2(
-            @Payload SampleKafkaVO message, @Headers MessageHeaders headers) throws Exception {
-        log.debug("#### retry message ===> {}", message.getName());
-    }
+//    @KafkaListener(
+//            topics = "retry-topic",
+//            containerFactory = "jsonListenerContainerFactory")
+//    public void SampleObjectListener2(
+//            @Payload SampleKafkaVO message, @Headers MessageHeaders headers) throws Exception {
+//        log.debug("#### retry message ===> {}", message.getName());
+//    }
 }
