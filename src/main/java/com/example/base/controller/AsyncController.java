@@ -1,9 +1,15 @@
 package com.example.base.controller;
 
+import com.example.base.service.AsyncCompFutureTestService;
+import com.example.base.service.AsyncFutureTestService;
 import com.example.base.service.AsyncTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @RestController
 public class AsyncController {
@@ -11,11 +17,38 @@ public class AsyncController {
     @Autowired
     AsyncTestService service;
 
+    @Autowired
+    AsyncFutureTestService futureTestService;
+
+    @Autowired
+    AsyncCompFutureTestService compFutureTestService;
+
     @GetMapping(value = "/asynctest")
     String asynctest() throws InterruptedException {
-        System.out.println(service.step1());
+
+        System.out.println(Thread.currentThread().getId() + "::" + service.step1());
         service.step2();
-        System.out.println(service.step3());
+        System.out.println(Thread.currentThread().getId() + "::" + service.step3());
+        return "success";
+    }
+
+    @GetMapping(value = "/asynctest/f")
+    String asyncFutureTest() throws InterruptedException, ExecutionException {
+        System.out.println(Thread.currentThread().getId() + "::" + futureTestService.step1());
+        Future<String> ret = futureTestService.step2();
+        System.out.println(Thread.currentThread().getId() + "::" + futureTestService.step3());
+        //System.out.println(Thread.currentThread().getId() + "::" + ret.get()); -> blocking code로 변경 따라서 blocking을 최소화 할 수 있도록 로직 위치 조정 필요 (최대한 마지막으로)
+        return "success";
+    }
+
+    @GetMapping(value = "/asynctest/cf")
+    String asyncCompletableFutureTest() throws InterruptedException {
+        System.out.println(Thread.currentThread().getId() + "::" + compFutureTestService.step1());
+        CompletableFuture<String> comp = compFutureTestService.cp();
+        comp.thenAccept(res -> {
+            System.out.println(Thread.currentThread().getId() + "::" + res);
+        });
+        System.out.println(Thread.currentThread().getId() + "::" + compFutureTestService.step3());
         return "success";
     }
 
