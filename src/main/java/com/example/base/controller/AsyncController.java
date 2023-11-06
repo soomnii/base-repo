@@ -35,7 +35,22 @@ public class AsyncController {
     @GetMapping(value = "/asynctest/f")
     String asyncFutureTest() throws InterruptedException, ExecutionException {
         System.out.println(Thread.currentThread().getId() + "::" + futureTestService.step1());
-        Future<String> ret = futureTestService.step2();
+        //Future<String> ret = futureTestService.step2();
+        CompletableFuture<String> res = CompletableFuture.supplyAsync(()-> {
+            try {
+                return futureTestService.step2().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        res.thenAccept(a -> {
+//            System.out.println("testttt");
+            System.out.println(Thread.currentThread().getId() + "::" + "testtt");
+        });
         System.out.println(Thread.currentThread().getId() + "::" + futureTestService.step3());
         //System.out.println(Thread.currentThread().getId() + "::" + ret.get()); -> blocking code로 변경 따라서 blocking을 최소화 할 수 있도록 로직 위치 조정 필요 (최대한 마지막으로)
         return "success";
